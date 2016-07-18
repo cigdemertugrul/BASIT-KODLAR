@@ -1,0 +1,54 @@
+#include <iostream>
+#include<stdlib.h>
+#include<time.h>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+using namespace std;
+enum oyun{
+	oyun_kazan,
+	oyun_kaybet,
+	oyun_devam,
+};
+typedef enum oyun oyun_durumu;
+
+int main(void) {
+	
+oyun_durumu status;
+status=oyun_devam;
+int ilk_zar,ikinci_zar,sum,point;
+srand(time(NULL));
+ilk_zar=1+rand() % 6;
+ikinci_zar=1+rand() % 6;
+sum=ilk_zar+ikinci_zar;
+cout<<"Birinci zar : "<< ilk_zar <<" Ikinci zar: "<<ikinci_zar <<" Ilk toplam: "<<sum<<endl;
+switch(sum){
+case 7:
+case 11: status=oyun_kazan;break;
+case 2:
+case 3:
+case 12: status=oyun_kaybet;break;
+default:status=oyun_devam;
+point=sum;
+cout<<"Sayi: "<<point<<endl; 
+break;
+}
+		
+while(status==oyun_devam){
+		ilk_zar=1+rand() % 6;
+		ikinci_zar=1+rand() % 6;	
+		sum=ilk_zar+ikinci_zar;
+		cout<<"Birinci zar : "<< ilk_zar <<" Ikinci zar: "<<ikinci_zar <<" Toplam: "<<sum<<endl;
+if(sum==point)
+		status=oyun_kazan;
+		else {
+		if(sum==7)
+		status=oyun_kaybet; }
+			
+	}
+	
+if(status==oyun_kazan)
+	cout<<"Oyuncu kazandi"<<endl;
+else
+	cout<<"Oyuncu kaybetti"<<endl;
+	
+	return EXIT_SUCCESS;
+}
