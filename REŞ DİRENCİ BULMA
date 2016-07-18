@@ -1,0 +1,25 @@
+#include<stdlib.h>
+#include<iostream>
+
+using namespace std;
+int main(){
+	int i=2;
+	int sayi1,sayi2,Res,sayi3;
+	cout<<"R1. Direnci giriniz :"<<"(bittiyse 0)";
+		cin>>sayi1;
+		cout<<"R2. Direnci giriniz :"<<"(bittiyse 0)";
+		cin>>sayi2; 
+		Res=sayi1*sayi2/(sayi1+sayi2);
+		
+	while(1){
+		i++;
+		cout<<"R"<<i<<". Direnci giriniz :"<<"(bittiyse 0)";
+		cin>>sayi3;
+		if(sayi3==0) break;
+		Res=sayi3*Res/(sayi3+Res);
+					
+	}
+cout<<"Esdeger : "<<Res;
+return EXIT_SUCCESS;
+}
+
