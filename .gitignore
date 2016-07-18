@@ -1,33 +1,137 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
 
-# Precompiled Headers
-*.gch
-*.pch
+struct oyuncu{
+	char isim[20];
+	char status;
+	struct oyuncu *next;
+};
+typedef struct oyuncu sos;
+sos *bir=NULL,*iki=NULL,*son;
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+int main(){
+	
+int dizi[4][4]={{0}};
+int i,j,satir,sutun,konum,sayac=1;
+char karakter;
+int a,b;
+printf("\n   SOS OYUNUNA HOSGELDINIZ \n\n");
+if(bir==NULL){
+bir=(sos*)malloc(sizeof(sos));
+bir->next=NULL;
+printf(" 1.OYUNCUNUN ISMINI GIRINIZ :  ");
+scanf("%s",&bir->isim);}
+iki=(sos*)malloc(sizeof(sos));
+bir->next=iki;
+iki->next=NULL;
+printf(" 2.OYUNCUNUN ISMINI GIRINIZ :  ");
+scanf("%s",&iki->isim);
+printf(" OYUNCULAR %s ve %s'DIR. IYI EGLENCELER .\n\n",bir->isim,iki->isim);
+printf("\n  ............SOS............ \n\n");
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
+for(i=1;i<4;i++){
+	for(j=1;j<4;j++){
+		if(dizi[i][j]==0)
+		printf("\t-   ");
+	}
+	printf("\n\n\n\n");
+}
+while(sayac<10){
+	while(1){
+		while (1){
+			
+		if(sayac%2==0){
+		printf(" %s LUTFEN [1-9] ARASINDA BIR SATIR SECINIZ : ",iki->isim);
+		scanf("%d",&konum);
+		son=iki;
+		}
+		else{
+		
+		printf(" %s LUTFEN [1-9] ARASINDA BIR SATIR SECINIZ : ",bir->isim);
+		scanf("%d",&konum);
+		son=bir;
+		}
+		if(konum<4) {
+			satir=1; sutun=konum;
+		}
+		else if(konum<7){
+			satir=2; sutun=konum-3;
+		}
+		else if(konum<10){
+			satir=3; sutun=konum-6;
+		}
+	    if(dizi[satir][sutun]==0) break;
+		else printf(" LUTFEN BOS BIR SATIR SECINIZ. \n");
+		
+	}
+	printf(" LUTFEN 'S' VEYA 'O' KARAKTERINDEN BIRINI GIRINIZ : ");
+	scanf("%s",&karakter);
+	printf("\n\n");
+	 if(karakter=='S' || karakter=='s'){
+	  dizi[satir][sutun]=1; break;}
+	 else if(karakter=='O' ||karakter=='o'){
+	  dizi[satir][sutun]=2; break; }
+	 else printf(" YANLIS KARAKTER GIRDINIZ LUTFEN 'S' VEYA 'O' KARAKTERI GIRINIZ . \n");
+	 
+	}
+	for(a=1;a<4;a++){
+		
+		for(b=1;b<4;b++){
+			if(dizi[a][b]==0) printf("\t-   ");
+		  	 else if(dizi[a][b]==1) printf("\tS   ");
+		    	else if(dizi[a][b]==2) printf("\tO   ");
+		}
+		printf("\n\n\n\n");
+	}
+	
+	if(dizi[2][2]==2)
+	{
+		if(dizi[1][1]==1 && dizi[3][3]==1){
+		
+		printf(" KAZANAN: %s TEBRIKLER",son->isim);  break;}
+		else if(dizi[1][3]==1 && dizi[3][1]==1){
+		
+		printf(" KAZANAN: %s TEBRIKLER",son->isim);  break;}
+		else if(dizi[2][1]==1 && dizi[2][3]==1){
+		
+		printf(" KAZANAN : %s TEBRIKLER ",son->isim);  break; }
+		else if(dizi[1][2]==1 && dizi[3][2]==1){		
+		printf(" KAZANAN : %s TEBRIKLER",son->isim);  break;}
+		
+	}
+	else if(dizi[2][1]==2){
+		if(dizi[1][1]==1 && dizi[3][1]==1){
+		
+		printf(" KAZANAN : %s TEBRIKLER\n",son->isim); break;}
+		
+		
+	}
+	else if(dizi[3][2]==2){
+		if(dizi[3][1]==1 && dizi[3][3]==1){
+		
+		printf(" KAZANAN : %s TEBRIKLER\n",son->isim); break;}
+		
+		
+	}
+	else if(dizi[1][2]==2){
+		if(dizi[1][1]==1 && dizi[1][3]==1){
+		
+		printf(" KAZANAN : %s TEBRIKLER \n",son->isim); break;}
+		
+		
+	}
+	else if(dizi[2][3]==2)
+	{
+		if(dizi[1][3]==1 && dizi[3][3]==1){
+		
+		printf(" KAZANAN : %s TEBRIKLER \n",son->isim);break;}
+		
+	}
+	
+	sayac++;
+}
+printf("  ");
+return 0;
+}
