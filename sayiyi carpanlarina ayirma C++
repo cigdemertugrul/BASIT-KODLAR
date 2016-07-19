@@ -1,0 +1,25 @@
+#include <iostream>
+#include<stdlib.h>
+#include<stdio.h>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+using namespace std;
+int main() {
+	
+	int sayi,faktor=2;
+	cout<<"Carpanlarina ayirmak istediginiz sayiyi giriniz :";
+	cin>>sayi;
+	if(sayi<2){
+	cout<<"Lutfen 2'den buyuk bir sayi giriniz"<<endl;
+	cin>>sayi;}
+	int ilksayi=sayi;
+	 while(faktor<ilksayi){
+		
+		if(sayi%faktor==0 ){
+		cout<<" "<<faktor<<endl;
+		sayi=sayi/faktor;}
+        else
+		faktor++;
+			  }
+		
+	return 0;
+}
