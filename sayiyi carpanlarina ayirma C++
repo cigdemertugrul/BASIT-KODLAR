@@ -20,6 +20,9 @@ int main() {
         else
 		faktor++;
 			  }
+        if(sayi==ilksayi){
+    	cout<<ilksayi<<"  sayisi asal sayidir";
+	}
 		
 	return 0;
 }
